@@ -105,6 +105,8 @@ class CheckListViewController: UITableViewController, ScanViewControllerDelegate
                 editButton.title = "Edit"
                 editButton.style = .plain
                 self.navigationController?.toolbar.isHidden = true
+                allIsSelected = false
+                selectAllButton.title = "Select All"
             }
         } else {
             let title = NSLocalizedString("当前列表为空", comment: "")
