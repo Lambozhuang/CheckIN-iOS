@@ -42,6 +42,14 @@ class CheckListViewController: UITableViewController, ScanViewControllerDelegate
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        // Set navigation title
+        self.navigationItem.title = L10n.Nav.scan
+        
+        // Set button titles
+        editButton.title = L10n.Button.edit
+        selectAllButton.title = L10n.Button.selectAll
+        deleteButton.title = L10n.Button.delete
+        
         if let data = UserDefaults.standard.value(forKey:"checkedList") as? Data {
             checkedList = try! PropertyListDecoder().decode(Array<CheckedUserData>.self, from: data)
         }
@@ -98,22 +106,22 @@ class CheckListViewController: UITableViewController, ScanViewControllerDelegate
             tableView.allowsMultipleSelectionDuringEditing = !tableView.isEditing
             tableView.setEditing(!tableView.isEditing, animated: true)
             if tableView.isEditing {
-                editButton.title = "Done"
+                editButton.title = L10n.Button.done
                 editButton.style = .done
                 self.navigationController?.toolbar.isHidden = false
             } else {
-                editButton.title = "Edit"
+                editButton.title = L10n.Button.edit
                 editButton.style = .plain
                 self.navigationController?.toolbar.isHidden = true
                 allIsSelected = false
-                selectAllButton.title = "Select All"
+                selectAllButton.title = L10n.Button.selectAll
             }
         } else {
-            let title = NSLocalizedString("当前列表为空", comment: "")
-            let message = NSLocalizedString("", comment: "")
-
-            let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
-
+            let alertController = UIAlertController(
+                title: L10n.CheckList.empty,
+                message: "",
+                preferredStyle: .alert
+            )
             present(alertController, animated: true, completion: nil)
             alertController.dismiss(animated: true, completion: nil)
         }
@@ -124,14 +132,14 @@ class CheckListViewController: UITableViewController, ScanViewControllerDelegate
         
         if allIsSelected == false {
             allIsSelected = true
-            selectAllButton.title = "Deselect"
+            selectAllButton.title = L10n.Button.deselectAll
             for index in 0..<checkedList.count {
                 let indexPath = IndexPath(row: index, section: 0)
                 self.tableView.selectRow(at: indexPath, animated: true, scrollPosition: .bottom)
             }
         } else if allIsSelected == true {
             allIsSelected = false
-            selectAllButton.title = "Select All"
+            selectAllButton.title = L10n.Button.selectAll
             for index in 0..<checkedList.count {
                 let indexPath = IndexPath(row: index, section: 0)
                 self.tableView.deselectRow(at: indexPath, animated: true)
@@ -151,12 +159,12 @@ class CheckListViewController: UITableViewController, ScanViewControllerDelegate
             
             if checkedList.count > 0 {
                 allIsSelected = false
-                selectAllButton.title = "Select All"
+                selectAllButton.title = L10n.Button.selectAll
             } else if checkedList.count == 0 {
                 allIsSelected = false
-                selectAllButton.title = "Select All"
+                selectAllButton.title = L10n.Button.selectAll
                 tableView.isEditing = false
-                editButton.title = "Edit"
+                editButton.title = L10n.Button.edit
                 editButton.style = .plain
                 self.navigationController?.toolbar.isHidden = true
             }
@@ -173,7 +181,7 @@ class CheckListViewController: UITableViewController, ScanViewControllerDelegate
     func ScanDidFinish(_ scanViewController: ScanViewController) {
         
         if scanViewController.scanString == "NO-QRCODE" {
-            scanViewController.showErrorAlert(message: "未识别到二维码")
+            scanViewController.showErrorAlert(message: L10n.Alert.noQRCodeDetected)
         } else {
             tempStr = scanViewController.scanString
             let strArray = decodeInfo(str: tempStr)
@@ -187,10 +195,10 @@ class CheckListViewController: UITableViewController, ScanViewControllerDelegate
                     UserDefaults.standard.set(try? PropertyListEncoder().encode(checkedList), forKey:"checkedList")
                     
                 } else {
-                    scanViewController.showErrorAlert(message: "无法重复签到")
+                    scanViewController.showErrorAlert(message: L10n.Alert.duplicateCheckinMessage)
                 }
             } else {
-                scanViewController.showErrorAlert(message: "无效的签到码")
+                scanViewController.showErrorAlert(message: L10n.Alert.invalidQRMessage)
             }
         }
         

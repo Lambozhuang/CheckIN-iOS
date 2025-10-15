@@ -1,0 +1,75 @@
+/* 
+ * Localizable.strings (Simplified Chinese)
+ * CheckIN
+ */
+
+// MARK: - Tab Bar Items
+"tab.home" = "主页";
+"tab.scan" = "点名";
+"tab.profile" = "个人信息";
+
+// MARK: - Navigation Titles
+"nav.checkin" = "CheckIN";
+"nav.profile" = "个人信息";
+"nav.edit_profile" = "修改信息";
+"nav.scan" = "签到";
+
+// MARK: - Common Labels
+"label.name" = "姓名";
+"label.student_id" = "学号";
+"label.school" = "学校";
+"label.time" = "时间";
+"label.null" = "未设置";
+
+// MARK: - Main Screen
+"main.qr_notice" = "请在签到时出示此码";
+"main.no_info_notice" = "暂未填写信息";
+
+// MARK: - Profile Screen
+"profile.section.info" = "个人信息";
+
+// MARK: - Edit Profile Screen
+"edit.section.fill_info" = "填写信息";
+"edit.section.select_school" = "选择学校";
+"edit.placeholder.name" = "请输入姓名";
+"edit.placeholder.student_id" = "请输入学号";
+
+// MARK: - Button Titles
+"button.save" = "保存";
+"button.cancel" = "取消";
+"button.done" = "完成";
+"button.edit" = "编辑";
+"button.delete" = "删除";
+"button.select_all" = "全选";
+"button.deselect_all" = "取消全选";
+
+// MARK: - Alert Messages
+"alert.unsaved_title" = "未保存的更改";
+"alert.unsaved_message" = "您有未保存的更改。确定要放弃这些更改吗？";
+"alert.discard" = "放弃";
+"alert.keep_editing" = "继续编辑";
+"alert.camera_not_supported_title" = "不支持扫描";
+"alert.camera_not_supported_message" = "您的设备不支持扫描二维码。请使用带摄像头的设备。";
+"alert.ok" = "好的";
+"alert.invalid_qr_title" = "无效的二维码";
+"alert.invalid_qr_message" = "该二维码无效或已过期。请让学生刷新二维码。";
+"alert.duplicate_checkin_title" = "已签到";
+"alert.duplicate_checkin_message" = "该学生已经签到过了。";
+"alert.no_qrcode_detected" = "未识别到二维码";
+"alert.checkin_success_title" = "%@ 已成功签到";
+"alert.checkin_success_message" = "时间：%@ ， 是否继续扫码？";
+"alert.continue" = "继续";
+"alert.confirm" = "确认";
+
+// MARK: - Check List
+"checklist.empty" = "暂无签到记录";
+"checklist.count" = "已签到 %d 人";
+
+// MARK: - Schools
+"school.zjut" = "浙江工业大学";
+"school.zju" = "浙江大学";
+"school.unnc" = "宁波诺丁汉大学";
+"school.others" = "其他";
+
+// MARK: - Date Format
+"date.format" = "yyyy年MM月dd日 HH:mm:ss";

@@ -1,0 +1,75 @@
+/* 
+ * Localizable.strings (English)
+ * CheckIN
+ */
+
+// MARK: - Tab Bar Items
+"tab.home" = "Home";
+"tab.scan" = "Check-in";
+"tab.profile" = "Profile";
+
+// MARK: - Navigation Titles
+"nav.checkin" = "CheckIN";
+"nav.profile" = "Profile";
+"nav.edit_profile" = "Edit Profile";
+"nav.scan" = "Check-in";
+
+// MARK: - Common Labels
+"label.name" = "Name";
+"label.student_id" = "Student ID";
+"label.school" = "School";
+"label.time" = "Time";
+"label.null" = "Not Set";
+
+// MARK: - Main Screen
+"main.qr_notice" = "Please show this code when checking in";
+"main.no_info_notice" = "Please fill in your information";
+
+// MARK: - Profile Screen
+"profile.section.info" = "Personal Information";
+
+// MARK: - Edit Profile Screen
+"edit.section.fill_info" = "Fill in Information";
+"edit.section.select_school" = "Select School";
+"edit.placeholder.name" = "Please enter your name";
+"edit.placeholder.student_id" = "Please enter your student ID";
+
+// MARK: - Button Titles
+"button.save" = "Save";
+"button.cancel" = "Cancel";
+"button.done" = "Done";
+"button.edit" = "Edit";
+"button.delete" = "Delete";
+"button.select_all" = "Select All";
+"button.deselect_all" = "Deselect All";
+
+// MARK: - Alert Messages
+"alert.unsaved_title" = "Unsaved Changes";
+"alert.unsaved_message" = "You have unsaved changes. Are you sure you want to discard them?";
+"alert.discard" = "Discard";
+"alert.keep_editing" = "Keep Editing";
+"alert.camera_not_supported_title" = "Scanning not supported";
+"alert.camera_not_supported_message" = "Your device does not support scanning a code. Please use a device with a camera.";
+"alert.ok" = "OK";
+"alert.invalid_qr_title" = "Invalid QR Code";
+"alert.invalid_qr_message" = "The QR code is invalid or expired. Please ask the student to refresh their code.";
+"alert.duplicate_checkin_title" = "Already Checked In";
+"alert.duplicate_checkin_message" = "This student has already been checked in.";
+"alert.no_qrcode_detected" = "No QR code detected";
+"alert.checkin_success_title" = "%@ checked in successfully";
+"alert.checkin_success_message" = "Time: %@ , Continue scanning?";
+"alert.continue" = "Continue";
+"alert.confirm" = "Confirm";
+
+// MARK: - Check List
+"checklist.empty" = "No check-ins yet";
+"checklist.count" = "%d students checked in";
+
+// MARK: - Schools
+"school.zjut" = "ZJUT";
+"school.zju" = "ZJU";
+"school.unnc" = "UNNC";
+"school.others" = "Others";
+
+// MARK: - Date Format
+"date.format" = "MMM dd, yyyy HH:mm:ss";

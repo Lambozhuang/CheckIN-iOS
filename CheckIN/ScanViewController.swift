@@ -64,8 +64,12 @@ class ScanViewController: UIViewController, AVCaptureMetadataOutputObjectsDelega
     }
 
     func failed() {
-        let ac = UIAlertController(title: "Scanning not supported", message: "Your device does not support scanning a code from an item. Please use a device with a camera.", preferredStyle: .alert)
-        ac.addAction(UIAlertAction(title: "OK", style: .default))
+        let ac = UIAlertController(
+            title: L10n.Alert.cameraNotSupportedTitle,
+            message: L10n.Alert.cameraNotSupportedMessage,
+            preferredStyle: .alert
+        )
+        ac.addAction(UIAlertAction(title: L10n.Alert.ok, style: .default))
         present(ac, animated: true)
         captureSession = nil
     }
@@ -155,19 +159,18 @@ class ScanViewController: UIViewController, AVCaptureMetadataOutputObjectsDelega
     
     func showContinueNotice(strArray: [String]) {
         
-        let title = NSLocalizedString("\(strArray[1]) 已成功签到", comment: "")
-        let message = NSLocalizedString("时间：\(strArray[4]) ， 是否继续扫码？", comment: "")
-        let cancelButton = NSLocalizedString("取消", comment: "")
-        let continueButton = NSLocalizedString("继续", comment: "")
-        
-        let alertCotroller = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        let alertCotroller = UIAlertController(
+            title: L10n.Alert.checkinSuccessTitle(strArray[1]),
+            message: L10n.Alert.checkinSuccessMessage(strArray[4]),
+            preferredStyle: .alert
+        )
 
         // Create the actions.
-        let cancelAction = UIAlertAction(title: cancelButton, style: .cancel) { _ in
+        let cancelAction = UIAlertAction(title: L10n.Button.cancel, style: .cancel) { _ in
             self.dismiss(animated: true)
         }
         
-        let continueAction = UIAlertAction(title: continueButton, style: .default) { _ in
+        let continueAction = UIAlertAction(title: L10n.Alert.continue_, style: .default) { _ in
             self.captureSession.startRunning()
             
         }
@@ -181,14 +184,14 @@ class ScanViewController: UIViewController, AVCaptureMetadataOutputObjectsDelega
     }
     
     func showErrorAlert(message: String) {
-        let title = NSLocalizedString(message, comment: "")
-        let message = NSLocalizedString("", comment: "")
-        let cancelButtonTitle = NSLocalizedString("确认", comment: "")
-
-        let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        let alertController = UIAlertController(
+            title: message,
+            message: "",
+            preferredStyle: .alert
+        )
 
         // Create the action.
-        let cancelAction = UIAlertAction(title: cancelButtonTitle, style: .cancel) { _ in
+        let cancelAction = UIAlertAction(title: L10n.Alert.confirm, style: .cancel) { _ in
             self.captureSession.startRunning()
         }
 

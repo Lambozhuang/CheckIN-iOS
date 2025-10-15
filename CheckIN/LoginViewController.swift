@@ -21,6 +21,10 @@ class LoginViewController: UITableViewController, UITextFieldDelegate, UIAdaptiv
     @IBOutlet weak var saveButton: UIBarButtonItem!
     @IBOutlet weak var cancelButton: UIBarButtonItem!
     
+    // Static labels for "Name:" and "ID:"
+    @IBOutlet weak var nameTitleLabel: UILabel!
+    @IBOutlet weak var idTitleLabel: UILabel!
+    
     var originalNameText = "" {
         didSet {
             editedNameText = originalNameText
@@ -117,16 +121,16 @@ class LoginViewController: UITableViewController, UITextFieldDelegate, UIAdaptiv
         
         // Only ask if the user wants to save if they attempt to pull to dismiss, not if they tap Cancel.
         if showingSave {
-            alert.addAction(UIAlertAction(title: "Save", style: .default) { _ in
+            alert.addAction(UIAlertAction(title: L10n.Button.save, style: .default) { _ in
                 self.delegate?.loginViewControllerDidFinish(self)
             })
         }
         
-        alert.addAction(UIAlertAction(title: "Discard Changes", style: .destructive) { _ in
+        alert.addAction(UIAlertAction(title: L10n.Alert.discard, style: .destructive) { _ in
             self.delegate?.loginViewControllerDidCancel(self)
         })
         
-        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+        alert.addAction(UIAlertAction(title: L10n.Button.cancel, style: .cancel, handler: nil))
         
         // If presenting the alert controller as a popover, point the popover at the Cancel button.
         alert.popoverPresentationController?.barButtonItem = cancelButton
@@ -136,6 +140,21 @@ class LoginViewController: UITableViewController, UITextFieldDelegate, UIAdaptiv
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        // Set navigation title
+        self.navigationItem.title = L10n.Nav.editProfile
+        
+        // Set button titles
+        saveButton.title = L10n.Button.save
+        cancelButton.title = L10n.Button.cancel
+        
+        // Set static labels
+        nameTitleLabel?.text = L10n.Label.name
+        idTitleLabel?.text = L10n.Label.studentId
+        
+        // Set text field placeholders
+        nameTextField.placeholder = L10n.Edit.placeholderName
+        idTextField.placeholder = L10n.Edit.placeholderStudentId
         
         schoolPickerView.delegate = self
         schoolPickerView.dataSource = self
@@ -152,6 +171,17 @@ class LoginViewController: UITableViewController, UITextFieldDelegate, UIAdaptiv
     override func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
         return 2
+    }
+    
+    override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        switch section {
+        case 0:
+            return L10n.Edit.sectionFillInfo
+        case 1:
+            return L10n.Edit.sectionSelectSchool
+        default:
+            return nil
+        }
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

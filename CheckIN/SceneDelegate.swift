@@ -17,6 +17,22 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         // If using a storyboard, the `window` property will automatically be initialized and attached to the scene.
         // This delegate does not imply the connecting scene or session are new (see `application:configurationForConnectingSceneSession` instead).
         guard let _ = (scene as? UIWindowScene) else { return }
+        
+        // Set localized tab bar item titles
+        if let tabBarController = window?.rootViewController as? UITabBarController {
+            if let viewControllers = tabBarController.viewControllers {
+                // Assuming the order is: Home (0), Check-in (1), Profile (2)
+                if viewControllers.count > 0 {
+                    viewControllers[0].tabBarItem.title = L10n.Tab.home
+                }
+                if viewControllers.count > 1 {
+                    viewControllers[1].tabBarItem.title = L10n.Tab.scan
+                }
+                if viewControllers.count > 2 {
+                    viewControllers[2].tabBarItem.title = L10n.Tab.profile
+                }
+            }
+        }
     }
 
     func sceneDidDisconnect(_ scene: UIScene) {

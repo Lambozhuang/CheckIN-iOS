@@ -13,6 +13,11 @@ class ProfileViewController: UITableViewController,  LoginViewControllerDelegate
     @IBOutlet weak var idLabel: UILabel!
     @IBOutlet weak var schoolLabel: UILabel!
     
+    // Static labels for "Name:", "ID:", "School:"
+    @IBOutlet weak var nameTitleLabel: UILabel!
+    @IBOutlet weak var idTitleLabel: UILabel!
+    @IBOutlet weak var schoolTitleLabel: UILabel!
+    
     
     var nameText = UserData.name {
         didSet {
@@ -83,8 +88,16 @@ class ProfileViewController: UITableViewController,  LoginViewControllerDelegate
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        nameText = UserData.name
-        idText = UserData.id
+        // Set navigation title
+        self.navigationItem.title = L10n.Nav.profile
+        
+        // Set static labels
+        nameTitleLabel?.text = L10n.Label.name
+        idTitleLabel?.text = L10n.Label.studentId
+        schoolTitleLabel?.text = L10n.Label.school
+        
+        nameText = UserData.name == "" ? UserData.name : L10n.Label.null
+        idText = UserData.id == "" ? UserData.id : L10n.Label.null
         schoolChoice = UserData.schoolChoice
         nameLabel.text = nameText
         idLabel.text = idText

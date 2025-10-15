@@ -20,19 +20,31 @@ class MainViewController: UIViewController {
     @IBOutlet weak var idTextLabel: UILabel!
     @IBOutlet weak var schoolTextLabel: UILabel!
     
+    // Static labels for "Name:", "ID:", "School:"
+    @IBOutlet weak var nameTitleLabel: UILabel!
+    @IBOutlet weak var idTitleLabel: UILabel!
+    @IBOutlet weak var schoolTitleLabel: UILabel!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        UserData.name = UserDefaults.standard.string(forKey: "name") ?? "NULL"
-        UserData.id = UserDefaults.standard.string(forKey: "id") ?? "NULL"
+        UserData.name = UserDefaults.standard.string(forKey: "name") ?? ""
+        UserData.id = UserDefaults.standard.string(forKey: "id") ?? ""
         UserData.schoolChoice = UserDefaults.standard.integer(forKey: "schoolChoice")
         
+        // Set navigation title
+        self.navigationItem.title = L10n.Nav.checkin
+        
+        // Set static labels
+        nameTitleLabel?.text = L10n.Label.name
+        idTitleLabel?.text = L10n.Label.studentId
+        schoolTitleLabel?.text = L10n.Label.school
         
         qrcodeImageView.image = createQRForString(qrString: encodeInfo(time: currentTime), qrImageName: "")
         
         let currentDate = Date(timeIntervalSinceNow: 1)
         let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "yyyy年MM月dd日 HH:mm:ss"
+        dateFormatter.dateFormat = L10n.DateFormat.standard
         currentTime = dateFormatter.string(from: currentDate)
         currentTimeLabel.text = currentTime
         
@@ -52,7 +64,7 @@ class MainViewController: UIViewController {
         
         let currentDate = Date(timeIntervalSinceNow: 1)
         let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "yyyy年MM月dd日 HH:mm:ss"
+        dateFormatter.dateFormat = L10n.DateFormat.standard
         currentTime = dateFormatter.string(from: currentDate)
         currentTimeLabel.text = currentTime
         
@@ -76,16 +88,16 @@ class MainViewController: UIViewController {
         
         qrcodeImageView.image = createQRForString(qrString: encodeInfo(time: currentTime), qrImageName: "")
         
-        nameTextLabel.text = UserData.name
-        idTextLabel.text = UserData.id
+        nameTextLabel.text = UserData.name == "" ? L10n.Label.null : UserData.name
+        idTextLabel.text = UserData.id == "" ? L10n.Label.null : UserData.id
         schoolTextLabel.text = schools[UserData.schoolChoice]
         
-        if UserData.name == "NULL" {
+        if UserData.name == "" {
             noticeTextLabel.textColor = .red
-            noticeTextLabel.text = "暂未填写信息"
+            noticeTextLabel.text = L10n.Main.noInfoNotice
         } else {
             noticeTextLabel.textColor = .label
-            noticeTextLabel.text = "请在签到时出示此码"
+            noticeTextLabel.text = L10n.Main.qrNotice
         }
     }
     
